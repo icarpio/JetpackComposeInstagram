@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Divider
@@ -48,9 +49,8 @@ fun TwitterCard() {
         Image(
             painter = painterResource(id = R.drawable.profile),
             contentDescription = "Imagen de perfil",
-            modifier = Modifier
+            modifier = Modifier.height(60.dp)
                 .clip(CircleShape)
-                .size(50.dp)
         )
         Column(
             Modifier
@@ -78,7 +78,6 @@ fun TwitterCard() {
                 contentDescription = "",
                 modifier = Modifier
                     .fillMaxWidth()
-                    .height(200.dp)
                     .clip(RoundedCornerShape(10)),
                 contentScale = ContentScale.Crop
             )

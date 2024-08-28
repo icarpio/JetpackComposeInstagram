@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
                 Scaffold(
                     modifier = Modifier.padding(top = 24.dp) // add 24dp padding top
                 ) {
-                    TwitterCard()
+                    SuperHeroViewWithControls()
                 }
             }
         }
