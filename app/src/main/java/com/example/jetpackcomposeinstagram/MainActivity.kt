@@ -15,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.jetpackcomposeinstagram.ui.theme.JetpackComposeInstagramTheme
 
 class MainActivity : ComponentActivity() {
@@ -26,8 +27,10 @@ class MainActivity : ComponentActivity() {
             JetpackComposeInstagramTheme {
                 // Convertir el Color de Jetpack Compose a un color entero (Int)
                 window.statusBarColor = colorResource(id = R.color.teal_200).toArgb()
-                Scaffold {
-                   LoginScreen()
+                Scaffold(
+                    modifier = Modifier.padding(top = 24.dp) // add 24dp padding top
+                ) {
+                    TwitterCard()
                 }
             }
         }
