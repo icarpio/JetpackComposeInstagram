@@ -1,6 +1,7 @@
 package com.example.jetpackcomposeinstagram
 
 import android.app.Activity
+import android.util.Patterns
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
@@ -22,6 +23,8 @@ import androidx.compose.material.icons.filled.FavoriteBorder
 import androidx.compose.material.icons.filled.Visibility
 import androidx.compose.material.icons.filled.VisibilityOff
 import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonColors
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -83,9 +86,15 @@ fun Body(modifier: Modifier) {
     Column(modifier = modifier) {
         ImageLogo()
         Spacer(modifier = Modifier.size(16.dp))
-        Email(email) { email = it }
+        Email(email) {
+            email = it
+            isloginEnable = enabledLogin(email,password)
+        }
         Spacer(modifier = Modifier.size(4.dp))
-        Password(password) { password = it }
+        Password(password) {
+            password = it
+            isloginEnable = enabledLogin(email,password)
+        }
         Spacer(modifier = Modifier.size(8.dp))
         ForgotPassword(Modifier.align(Alignment.End))
         Spacer(modifier = Modifier.size(16.dp))
@@ -149,9 +158,23 @@ fun LoginDivider() {
 
 @Composable
 fun LoginButton(isloginEnable: Boolean) {
-    Button(onClick = { }, enabled = isloginEnable, modifier = Modifier.fillMaxWidth()) {
+    Button(
+        onClick = { },
+        enabled = isloginEnable,
+        modifier = Modifier.fillMaxWidth(),
+        colors = ButtonDefaults.buttonColors(
+            containerColor =  Color(0xff335bff), // Cambia el color de fondo del botón
+            disabledContainerColor = Color(0xff33beff ), //Cuando esta deshabilitado
+            contentColor = Color(0xFFFFFFFF), // Cambia el color del contenido (texto o íconos)
+            disabledContentColor =  Color(0xFFFFFFFF),
+        )
+    ) {
         Text(text = "Log in")
     }
+}
+
+fun enabledLogin(email:String,password:String):Boolean{
+    return Patterns.EMAIL_ADDRESS.matcher(email).matches() && password.length > 6
 }
 
 @Composable
