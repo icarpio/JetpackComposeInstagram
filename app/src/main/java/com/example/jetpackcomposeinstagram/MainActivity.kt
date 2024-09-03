@@ -5,18 +5,13 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.toArgb
-import androidx.compose.ui.res.colorResource
-import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
 import com.example.jetpackcomposeinstagram.ui.theme.JetpackComposeInstagramTheme
+import kotlinx.coroutines.launch
 
 class MainActivity : ComponentActivity() {
     @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
@@ -26,11 +21,15 @@ class MainActivity : ComponentActivity() {
         setContent {
             JetpackComposeInstagramTheme {
                 // Convertir el Color de Jetpack Compose a un color entero (Int)
-                window.statusBarColor = colorResource(id = R.color.teal_200).toArgb()
+                //window.statusBarColor = colorResource(id = R.color.teal_200).toArgb()
+                val snackbarHostState = remember { SnackbarHostState() }
+                val scope = rememberCoroutineScope()
                 Scaffold(
-                    modifier = Modifier.padding(top = 24.dp) // add 24dp padding top
+                    topBar = { MyTopAppBar { scope.launch { snackbarHostState.showSnackbar("Has pulsado $it") } } },
+                    snackbarHost = { SnackbarHost(snackbarHostState) },
+                    bottomBar = { MyBottomNavigation()}
+
                 ) {
-                    SuperHeroStickyView()
                 }
             }
         }
