@@ -2,7 +2,9 @@ package com.example.jetpackcomposeinstagram
 
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.Image
+import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -46,6 +48,27 @@ fun SuperHeroView() {
                 Toast.makeText(context, it.superheroName, Toast.LENGTH_SHORT).show()
             }
         }
+    }
+}
+
+@OptIn(ExperimentalFoundationApi::class)
+@Composable
+fun SuperHeroStickyView() {
+    val context = LocalContext.current //Context fuera de la funcion
+    val superhero: Map<String, List<SuperHero>> = getSuperheros().groupBy { it.publisher}
+    LazyColumn(verticalArrangement  = Arrangement.spacedBy(8.dp)) {
+        superhero.forEach{ (publisher,mySuperHero) ->
+            stickyHeader {
+                Text(text = publisher, modifier = Modifier.fillMaxWidth().background(Color.Green), fontSize = 16.sp, color =Color.White)
+            }
+            items(mySuperHero) { superhero ->
+                ItemHero(superHero = superhero)
+                {
+                    Toast.makeText(context, it.superheroName, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
+
     }
 }
 
