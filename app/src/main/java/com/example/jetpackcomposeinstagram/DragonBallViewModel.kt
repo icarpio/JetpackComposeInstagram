@@ -42,8 +42,8 @@ import kotlinx.coroutines.launch
 class DragonBallViewModel: ViewModel() {
     private val api = DragonBallApi.service
 
-    private val _character = MutableLiveData<DragonBall>()
-    val character: LiveData<DragonBall> = _character
+    private val _characters = MutableLiveData<List<Item>>() // Aquí debe ser una lista de Items
+    val characters: LiveData<List<Item>> = _characters
 
     private val _error = MutableLiveData<String>()
     val error: LiveData<String> = _error
@@ -53,7 +53,7 @@ class DragonBallViewModel: ViewModel() {
             try {
                 val response = api.getCharacters()
                 if (response.isSuccessful) {
-                    _character.value = response.body()
+                    _characters.value = response.body()?.items ?: emptyList() // Asigna la lista de personajes
                 } else {
                     _error.value = "Error: ${response.code()} ${response.message()}"
                 }
@@ -65,32 +65,32 @@ class DragonBallViewModel: ViewModel() {
 }
 
 
-
-
 @OptIn(ExperimentalCoilApi::class)
 @Composable
-fun DragonBallScreen(viewModel: DragonBallViewModel = DragonBallViewModel()) {
+fun DragonBallScreen(
+    viewModel: DragonBallViewModel = DragonBallViewModel()
+) {
     LaunchedEffect(Unit) {
         viewModel.getAllCharacters()
     }
 
-    val character by viewModel.character.observeAsState()
+    val characters by viewModel.characters.observeAsState()
     val error by viewModel.error.observeAsState()
 
     if (error != null) {
         Text(text = error!!)
-    } else if (character != null) {
+    } else if (characters != null) {
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth(),
             verticalArrangement = Arrangement.Top
         ) {
-            itemsIndexed(character!!.items) { index, character ->
-                Log.d("DB Character", "DB Character $index: $character")
+            itemsIndexed(characters!!) { index, character -> // Aquí characters es la lista de Items
                 Row(
                     modifier = Modifier
                         .fillMaxWidth()
                         .padding(16.dp)
+
                 ) {
                     FullImageFromURLWithPlaceHolder(character.image)
                     Spacer(modifier = Modifier.width(16.dp))
@@ -121,7 +121,6 @@ fun DragonBallScreen(viewModel: DragonBallViewModel = DragonBallViewModel()) {
         }
     }
 }
-
 
 @Composable
 fun FullImageFromURLWithPlaceHolder(imageUrl: String){
