@@ -62,7 +62,7 @@ class MainActivity : ComponentActivity() {
                                 .fillMaxHeight()
                                 .padding(padding) // Constrain to available space
                         ) {
-                            RandomUserScreen()
+                            DragonBallScreen()
                         }
                     }
                 }

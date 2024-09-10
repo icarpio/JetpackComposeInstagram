@@ -5,19 +5,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-object RandomUserApi {
-    private val retrofit = Retrofit.Builder()
-        .baseUrl("https://randomuser.me/api/")
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
 
-    val service = retrofit.create(RandomUserService::class.java)
-}
-
-interface RandomUserService {
-    @GET(".")
-    suspend fun getRandomUsers(@Query("results") results: Int = 100): Response<RandomUserResponse>
-}
 
 data class RandomUserResponse(
     @SerializedName("results") val results: List<Result>,
