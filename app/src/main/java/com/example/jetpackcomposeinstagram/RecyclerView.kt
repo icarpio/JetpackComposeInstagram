@@ -152,11 +152,11 @@ fun SuperHeroViewWithControls() {
 }
 fun getSuperheros(): List<SuperHero> {
     return listOf(
-        SuperHero("Spiderman", "Peter", "Marvel", R.drawable.spiderman),
-        SuperHero("Thor", "Thor", "Marvel", R.drawable.thor),
-        SuperHero("WhonderWhoman", "Diana", "DC", R.drawable.wonder_woman),
-        SuperHero("Daredevil", "Juan", "Marvel", R.drawable.daredevil),
-        SuperHero("Flash", "Jay Garrik", "Marvel", R.drawable.flash),
-        SuperHero("Batman", "Bruce Wayne", "DC", R.drawable.batman)
+        SuperHero("Spiderman", "Peter", "Marvel", R.drawable.fb),
+        SuperHero("Thor", "Thor", "Marvel", R.drawable.fb),
+        SuperHero("WhonderWhoman", "Diana", "DC", R.drawable.fb),
+        SuperHero("Daredevil", "Juan", "Marvel", R.drawable.fb),
+        SuperHero("Flash", "Jay Garrik", "Marvel", R.drawable.fb),
+        SuperHero("Batman", "Bruce Wayne", "DC", R.drawable.fb)
     )
 }

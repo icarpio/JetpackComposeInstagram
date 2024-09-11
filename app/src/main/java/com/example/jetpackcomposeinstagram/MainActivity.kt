@@ -19,6 +19,9 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.navigation.compose.NavHost
+import androidx.navigation.compose.composable
+import androidx.navigation.compose.rememberNavController
 import com.example.jetpackcomposeinstagram.ui.theme.JetpackComposeInstagramTheme
 import kotlinx.coroutines.launch
 
@@ -32,6 +35,9 @@ class MainActivity : ComponentActivity() {
                 val snackbarHostState = remember { SnackbarHostState() }
                 val scope = rememberCoroutineScope()
                 val drawerState = rememberDrawerState(DrawerValue.Closed)
+
+                //NAVIGATION
+                val navController = rememberNavController()
 
                 ModalNavigationDrawer(
                     drawerContent = {
@@ -62,7 +68,16 @@ class MainActivity : ComponentActivity() {
                                 .fillMaxHeight()
                                 .padding(padding) // Constrain to available space
                         ) {
-                           DragonBallScreen()
+                            //NAVIGATION
+                            NavHost(navController, startDestination = "list") { // Add this block
+                                composable("list") {
+                                    DragonBallScreen(navController = navController)
+                                }
+                                composable("detail/{characterId}") { backStackEntry ->
+                                    val characterId = backStackEntry.arguments?.getString("characterId")
+                                    DetailScreen(viewModel = DragonBallViewModel(), navController = navController, characterId = characterId!!)
+                                }
+                            }
                         }
                     }
                 }
@@ -70,3 +85,4 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
