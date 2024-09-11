@@ -13,7 +13,10 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -135,6 +138,8 @@ fun DragonBallScreen(
                             text = "Strength: ${character.ki}",
                             fontSize = 15.sp
                         )
+
+
                     }
                 }
             }
@@ -164,6 +169,8 @@ fun FullImageFromURLWithPlaceHolder(imageUrl: String){
     )
 }
 
+
+
 @Composable
 fun DetailScreen(
     viewModel: DragonBallViewModel = DragonBallViewModel(),
@@ -173,6 +180,7 @@ fun DetailScreen(
     val character by viewModel.getCharacter(characterId).observeAsState()
 
     if (character != null) {
+        println(character)
         Column(
             modifier = Modifier
                 .fillMaxSize() // Ocupa toda la pantalla
@@ -203,6 +211,27 @@ fun DetailScreen(
                     contentDescription = "Volver"
                 )
             }
+            val transformations = character!!.transformations
+            Box(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .wrapContentSize(Alignment.CenterStart)
+                   
+            ) {
+                LazyRow(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .wrapContentSize(Alignment.CenterStart),
+                    verticalAlignment = Alignment.CenterVertically
+                ) {
+                    items(transformations) { transformation ->
+                        // your item composable function here
+                        // for example, you could display the transformation name or details
+                        Text(text = transformation.name)
+                        FullImageFromURLWithPlaceHolder(imageUrl = transformation.image)
+                    }
+                }
+            }
 
 
         }
@@ -229,7 +258,7 @@ fun DisplayImageDetail(imageUrl: String){
         contentScale = ContentScale.Fit,
         modifier = Modifier
             .fillMaxWidth()
-            .height(400.dp)
+            .height(300.dp)
     )
 }
 
