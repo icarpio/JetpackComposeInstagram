@@ -22,6 +22,7 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.example.jetpackcomposeinstagram.model.Routes
 import com.example.jetpackcomposeinstagram.ui.theme.JetpackComposeInstagramTheme
 import kotlinx.coroutines.launch
 
@@ -69,7 +70,8 @@ class MainActivity : ComponentActivity() {
                                 .padding(padding) // Constrain to available space
                         ) {
                             //NAVIGATION
-                            NavHost(navController, startDestination = "list") { // Add this block
+                            /*
+                            NavHost(navController, startDestination = "list") {
                                 composable("list") {
                                     DragonBallScreen(navController = navController)
                                 }
@@ -77,6 +79,11 @@ class MainActivity : ComponentActivity() {
                                     val characterId = backStackEntry.arguments?.getString("characterId")
                                     DetailScreen(viewModel = DragonBallViewModel(), navController = navController, characterId = characterId!!)
                                 }
+                            }*/
+                            NavHost(navController=navController, startDestination = Routes.Pantalla1.route){
+                                composable(Routes.Pantalla1.route) { Screen1(navController)}
+                                composable(Routes.Pantalla2.route) { Screen2(navController)}
+                                composable(Routes.Pantalla3.route) { Screen3(navController)}
                             }
                         }
                     }
