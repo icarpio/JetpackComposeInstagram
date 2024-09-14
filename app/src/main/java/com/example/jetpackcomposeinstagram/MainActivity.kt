@@ -19,9 +19,11 @@ import androidx.compose.material3.rememberDrawerState
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import androidx.navigation.navArgument
 import com.example.jetpackcomposeinstagram.model.Routes
 import com.example.jetpackcomposeinstagram.ui.theme.JetpackComposeInstagramTheme
 import kotlinx.coroutines.launch
@@ -80,10 +82,28 @@ class MainActivity : ComponentActivity() {
                                     DetailScreen(viewModel = DragonBallViewModel(), navController = navController, characterId = characterId!!)
                                 }
                             }*/
-                            NavHost(navController=navController, startDestination = Routes.Pantalla1.route){
-                                composable(Routes.Pantalla1.route) { Screen1(navController)}
-                                composable(Routes.Pantalla2.route) { Screen2(navController)}
-                                composable(Routes.Pantalla3.route) { Screen3(navController)}
+                            NavHost(
+                                navController = navController,
+                                startDestination = Routes.Screen1.route
+                            ) {
+                                composable(Routes.Screen1.route) { Screen1(navController) }
+                                composable(Routes.Screen2.route) { Screen2(navController) }
+                                composable(Routes.Screen3.route) { Screen3(navController) }
+                                composable(Routes.Screen4.route, arguments = listOf(navArgument("age"){type=
+                                    NavType.IntType})) { backStackEntry ->
+                                    Screen4(
+                                        navController,
+                                        backStackEntry.arguments?.getInt("age") ?: 0
+                                    )
+                                }
+                                composable(Routes.Screen5.route,
+                                    arguments = listOf(navArgument("name") { defaultValue = " " })) {
+                                        backStackEntry ->
+                                    Screen5(
+                                        navController,
+                                        backStackEntry.arguments?.getString("name")
+                                    )
+                                }
                             }
                         }
                     }
