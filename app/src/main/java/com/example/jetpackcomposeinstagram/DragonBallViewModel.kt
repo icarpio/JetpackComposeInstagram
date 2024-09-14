@@ -40,12 +40,9 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import androidx.navigation.NavController
-import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.AsyncImage
 import coil.request.ImageRequest
-import com.example.jetpackcomposeinstagram.model.DragonBall
 import com.example.jetpackcomposeinstagram.model.Item
 import com.example.jetpackcomposeinstagram.network.DragonBallApi
 import kotlinx.coroutines.launch
