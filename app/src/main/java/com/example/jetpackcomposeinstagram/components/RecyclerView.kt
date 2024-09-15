@@ -1,4 +1,4 @@
-package com.example.jetpackcomposeinstagram
+package com.example.jetpackcomposeinstagram.components
 
 import android.widget.Toast
 import androidx.compose.foundation.BorderStroke
@@ -11,7 +11,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -35,6 +34,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.example.jetpackcomposeinstagram.R
 import com.example.jetpackcomposeinstagram.model.SuperHero
 import kotlinx.coroutines.launch
 

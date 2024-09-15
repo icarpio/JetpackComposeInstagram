@@ -24,6 +24,14 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
+import com.example.jetpackcomposeinstagram.components.MyBottomNavigation
+import com.example.jetpackcomposeinstagram.components.MyModalDrawer
+import com.example.jetpackcomposeinstagram.components.MyTopAppBar
+import com.example.jetpackcomposeinstagram.components.Screen1
+import com.example.jetpackcomposeinstagram.components.Screen2
+import com.example.jetpackcomposeinstagram.components.Screen3
+import com.example.jetpackcomposeinstagram.components.Screen4
+import com.example.jetpackcomposeinstagram.components.Screen5
 import com.example.jetpackcomposeinstagram.model.Routes
 import com.example.jetpackcomposeinstagram.ui.theme.JetpackComposeInstagramTheme
 import kotlinx.coroutines.launch
@@ -105,6 +113,7 @@ class MainActivity : ComponentActivity() {
                                     )
                                 }
                             }
+
                         }
                     }
                 }

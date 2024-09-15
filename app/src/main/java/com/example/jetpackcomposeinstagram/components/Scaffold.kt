@@ -1,4 +1,4 @@
-package com.example.jetpackcomposeinstagram
+package com.example.jetpackcomposeinstagram.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column

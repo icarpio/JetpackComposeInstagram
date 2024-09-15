@@ -1,4 +1,4 @@
-package com.example.jetpackcomposeinstagram.model
+package com.example.jetpackcomposeinstagram.dragonballapi
 
 data class DragonBall(
     val items: List<Item>,
@@ -16,7 +16,7 @@ data class Item(
     val maxKi: String,
     val name: String,
     val race: String,
-    val originPlanet:OriginPlanet,
+    val originPlanet: OriginPlanet,
     val transformations:List<Transformation>
 )
 

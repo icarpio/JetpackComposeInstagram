@@ -1,7 +1,7 @@
 package com.example.jetpackcomposeinstagram.network
 
-import com.example.jetpackcomposeinstagram.model.DragonBall
-import com.example.jetpackcomposeinstagram.model.Item
+import com.example.jetpackcomposeinstagram.dragonballapi.DragonBall
+import com.example.jetpackcomposeinstagram.dragonballapi.Item
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
